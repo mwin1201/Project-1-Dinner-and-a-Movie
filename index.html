@@ -22,12 +22,12 @@
         <div class="row">
             <!--make dinner button-->
             <div class="col s6 m6 l6">
-                <a class="waves-effect waves-light btn-large">Make Dinner!</a>
+                <a class="waves-effect waves-light btn-large btn modal-trigger" href="#dinner-modal">Make Dinner!</a>
             </div>
 
             <!--find movie button-->
             <div class="col s6 m6 l6">
-                <a class="waves-effect waves-light btn-large">Find a Movie!</a>
+                <a class="waves-effect waves-light btn-large btn modal-trigger" href="#movie-modal">Find a Movie!</a>
             </div>
         </div>
         <!--Cards to contain API information-->
@@ -180,6 +180,77 @@
                 </div>
             </div>
         </div>
+
+        <!--Dinner Modal-->
+        <div id="dinner-modal" class="modal">
+            <div class="modal-content">
+                <form>
+                    <div class="input-field col s6">
+                        <select name="meal-type" id="meal-type">
+                            <option value="" disabled selected>Select a meal type</option>
+                            <option value="main-course">Main Course</option>
+                            <option value="side-dish">Side Dish</option>
+                            <option value="appetizer">Appetizer</option>
+                            <option value="salad">Salad</option>
+                            <option value="snack">Snack</option>
+                        </select>
+                        <label for="meal-type">Select a meal type:</label>
+                    </div>
+                    <br><br>
+                    <div class="input-field col s6">
+                        <select name="cuisine" id="cuisine">
+                            <option value="" disabled selected>Select a cuisine</option>
+                            <option value="African">African</option>
+                            <option value="American">American</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="French">French</option>
+                            <option value="German">German</option>
+                            <option value="Italian">Italian</option>
+                            <option value="Mexican">Mexican</option>
+                            <option value="Thai">Thai</option>
+                        </select>
+                        <label for="cuisine">Select a cuisine:</label>
+                    </div>
+                    <br><br>
+                    <div class="input-field col s6">
+                        <select name="diet" id="diet">
+                            <option value="" disabled selected>Select a diet</option>
+                            <option value="gluten-free">Gluten-free</option>
+                            <option value="Vegetarian">Vegetarian</option>
+                            <option value="Vegan">Vegan</option>
+                        </select>
+                        <label for="diet">Select a diet:</label>
+                    </div>
+                    <br><br>
+                    <a class="modal-close waves-effect waves-light btn">Submit</a>
+                </form>
+            </div>
+        </div>
+
+        <!--movie modal-->
+        <div id="movie-modal" class="modal">
+            <div class="modal-content">
+                <form>
+                    <div class="input-field col s6">
+                        <select name="sort" id="sort">
+                            <option value="" disabled selected>Select a value to sort by</option>
+                            <option value="most-popular">Most Popular</option>
+                            <option value="least-popular">Least Popular</option>
+                            <option value="newest-releast">Newest Release</option>
+                            <option value="oldest-release">Oldest Release</option>
+                        </select>
+                        <label for="sort">Select a value to sort by:</label>
+                    </div>
+                    <br><br>
+                    <div class="input-field col s6">
+                        <input placeholder="2020" id="year" type="text" class="validate">
+                        <label for="year">Year</label>
+                    </div>
+                    <a class="modal-close waves-effect waves-light btn">Submit</a>
+                </form>
+            </div>
+        </div>
+
     </div>
 
 
@@ -187,7 +258,9 @@
         &copy All rights reserved. Max, Chris, and Mahdi 2021.
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
