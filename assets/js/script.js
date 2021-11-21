@@ -26,7 +26,12 @@ $(document).ready(function(){
 
 // initialize the movie modal
 $(document).ready(function() {
-    $('#movie-modal').modal();
+    $('#movie-modal').modal({
+        onCloseEnd: function() {
+            $("#sort").val("");
+            $("#year").val("");
+        }
+    });
 });
 
 // initialize the sort dropdown
@@ -34,17 +39,23 @@ $(document).ready(function(){
     $('#sort').formSelect();
 });
 
+// initialize character counting on year field
+$(document).ready(function() {
+    $("input#year").characterCounter();
+});
 
-var getMovies = function(params) {
+var getMovies = function(sort, year) {
     // format tmdb api url
     // var tmdbApiUrl ="https://api.themoviedb.org/3/discover/movie?api_key=b2defd411e4c4ccada84680b336db68b&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&year=" +  year + "&with_genres=" + genre + "&with_watch_monetization_types=free";
-    var tmdbApiUrl ="https://api.themoviedb.org/3/discover/movie?api_key=b2defd411e4c4ccada84680b336db68b&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=westerns&with_watch_monetization_types=flatrate";
+    var tmdbApiUrl ="https://api.themoviedb.org/3/discover/movie?api_key=b2defd411e4c4ccada84680b336db68b&language=en-US&sort_by=" + sort + "&include_adult=false&include_video=false&page=1&year=" + year + "&with_watch_monetization_types=flatrate";
 
     // make a request to the url
     fetch(tmdbApiUrl).then(function (response) {
-        response.json().then(function (data) {
-            console.log(data)
-        });
+        if (response.ok) {
+            response.json().then(function (data) {
+                displayMovies(data);
+            });
+        }
     });
 };
 
@@ -71,7 +82,15 @@ var displayRecipes = function(data) {
     console.log("Length of results: " + data.videos.length);
 };
 
-// get dinner inputs
+// display movie cards on site
+var displayMovies = function(data) {
+    for (var i = 0; i < 4; i++) {
+        console.log("[Movie " + i + "]: Poster path: " + data.results[i].poster_path + " - Title: " + data.results[i].title + " - Overview: " + data.results[i].overview + " - Release data: " + data.results[i].release_date + " - vote average: " + data.results[i].vote_average);
+    }
+};
+
+
+// get dinner user inputs
 $("#dinner-submit-btn").click(function(event) {
     event.preventDefault();
     var mealType = $("#meal-type").val();
@@ -79,4 +98,20 @@ $("#dinner-submit-btn").click(function(event) {
     var diet = $("#diet").val();
     console.log("meal type: " + mealType + " - cuisine: " + cuisine + " - diet: " + diet);
     getRecipes(mealType, cuisine, diet);
+});
+
+// get movie user inputs
+$("#movie-submit-btn").click(function(event) {
+    event.preventDefault();
+    var sort = $("#sort").val();
+    var year = $("#year").val();
+    if (year < 1960 || year > 2021) {
+        alert("You must enter a valid year");
+        $("#movie-submit-btn").addClass("disabled");
+    }
+    else if ($("#movie-submit-btn").hasClass("disabled")) {
+        $("#movie-submit-btn").removeClass("disabled");
+    }
+    console.log(sort + " and " + year);
+    getMovies(sort, year);
 });
