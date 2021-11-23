@@ -144,21 +144,21 @@ var addToFavorites = function(obj) {
 
 // load favorite recipes
 var loadFavRecipes = function() {
-    var favRecipes = JSON.parse(localStorage.getItem("Favorite-Recipes"));
-    for (var i = 0; i < favRecipes.length; i++) {
+    favRecipesArr = JSON.parse(localStorage.getItem("Favorite-Recipes"));
+    for (var i = 0; i < favRecipesArr.length; i++) {
         $("#fav-recipe-container").append(
             '<div class="col s12 m3 l3">' +
             '<div class="card" id="fav-recipe' + i + '">' +
             '<div class="card-image">' +
-            '<img src=' + favRecipes[i].image + '>' +
+            '<img src=' + favRecipesArr[i].image + '>' +
             '<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">clear</i></a>' + 
             '</div>' +
             '<div class="card-content">' +
-            '<h4 class="card-title">' + favRecipes[i].title + '</h4>' +
+            '<h4 class="card-title">' + favRecipesArr[i].title + '</h4>' +
             '</div>' +
             '<div class="card-action">' +
-            '<a href' + favRecipes[i].video + 'target="_blank">YouTube Tutorial</a>' +
-            '<span>' + favRecipes[i].views + '</span>' +
+            '<a href' + favRecipesArr[i].video + 'target="_blank">YouTube Tutorial</a>' +
+            '<span>' + favRecipesArr[i].views + '</span>' +
             '</div>' + 
             '</div>' +
             '</div>'
@@ -166,29 +166,37 @@ var loadFavRecipes = function() {
     }
 };
 
+// load favorite movies
 var loadFavMovies = function() {
-    var favMovies = JSON.parse(localStorage.getItem("Favorite-Movies"));
-    for (var i = 0; i < favMovies.length; i++) {
+    favMoviesArr = JSON.parse(localStorage.getItem("Favorite-Movies"));
+    for (var i = 0; i < favMoviesArr.length; i++) {
         $("#fav-movie-container").append(
             '<div class="col s12 m3 l3">' +
             '<div class="card" id="fav-movie' + i + '">' +
             ' <div class="card-image">' +
-            '<img src=' + favMovies[i].poster + '>' + 
+            '<img src=' + favMoviesArr[i].poster + '>' + 
             '<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">clear</i></a>' + 
             '</div>' + 
             '<div class="card-content">' +
-            '<h4 class="card-title" id="movie-title">' + favMovies[i].title + '</h4>' + 
-            '<p id="overview">' + favMovies[i].overview + '</p>' +
+            '<h4 class="card-title" id="movie-title">' + favMoviesArr[i].title + '</h4>' + 
+            '<p id="overview">' + favMoviesArr[i].overview + '</p>' +
             '</div>' +
             '<div class="card-action">' +
-            '<p id="release-date">' + favMovies[i].releaseDate + '</p>' +
-            '<p id="vote-average">' + favMovies[i].voteAvg + '</p>' +
+            '<p id="release-date">' + favMoviesArr[i].releaseDate + '</p>' +
+            '<p id="vote-average">' + favMoviesArr[i].voteAvg + '</p>' +
             '</div>' +
             '</div>' +
             '</div>'
         );
     }
-}
+};
+
+// remove recipe from favorite list
+var removeRecipe = function(card) {
+    
+};
+
+// remove movie from favorite list
 
 // get dinner user inputs
 $("#dinner-submit-btn").click(function(event) {
@@ -218,11 +226,17 @@ $("#movie-submit-btn").click(function(event) {
 
 $(".material-icons").click(function(event) {
     var cardId = $(this).parents(".card").attr("id");
-    if (cardId.includes("recipe")) {
-        createRecipeObj($(this).parents(".card").attr("id"));
+    if (cardId.includes("fav-recipe")) {
+        removeRecipe(cardId);
+    }
+    else if (cardId.includes("fav-movie")) {
+        removeMovie(cardId);
+    }
+    else if (cardId.includes("recipe")) {
+        createRecipeObj(cardId);
     }
     else{
-        createMovieObj($(this).parents(".card").attr("id"));
+        createMovieObj(cardId);
     }
 });
 
