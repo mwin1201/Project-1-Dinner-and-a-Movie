@@ -188,8 +188,8 @@
                     <div class="input-field col s6">
                         <select name="meal-type" id="meal-type">
                             <option value="" disabled selected>Select a meal type</option>
-                            <option value="main-course">Main Course</option>
-                            <option value="side-dish">Side Dish</option>
+                            <option value="main course">Main Course</option>
+                            <option value="side dish">Side Dish</option>
                             <option value="appetizer">Appetizer</option>
                             <option value="salad">Salad</option>
                             <option value="snack">Snack</option>
@@ -206,7 +206,6 @@
                             <option value="French">French</option>
                             <option value="German">German</option>
                             <option value="Italian">Italian</option>
-                            <option value="Mexican">Mexican</option>
                             <option value="Thai">Thai</option>
                         </select>
                         <label for="cuisine">Select a cuisine:</label>
@@ -222,7 +221,7 @@
                         <label for="diet">Select a diet:</label>
                     </div>
                     <br><br>
-                    <a class="modal-close waves-effect waves-light btn">Submit</a>
+                    <a class="modal-close waves-effect waves-light btn" id="dinner-submit-btn">Submit</a>
                 </form>
             </div>
         </div>
@@ -234,19 +233,19 @@
                     <div class="input-field col s6">
                         <select name="sort" id="sort">
                             <option value="" disabled selected>Select a value to sort by</option>
-                            <option value="most-popular">Most Popular</option>
-                            <option value="least-popular">Least Popular</option>
-                            <option value="newest-releast">Newest Release</option>
-                            <option value="oldest-release">Oldest Release</option>
+                            <option value="popularity.desc">Most Popular</option>
+                            <option value="popularity.asc">Least Popular</option>
+                            <option value="release_date.desc">Newest Release</option>
+                            <option value="release_date.asc">Oldest Release</option>
                         </select>
                         <label for="sort">Select a value to sort by:</label>
                     </div>
                     <br><br>
                     <div class="input-field col s6">
-                        <input placeholder="2020" id="year" type="text" class="validate">
+                        <input placeholder="2020" id="year" type="text" class="validate" data-length="4">
                         <label for="year">Year</label>
                     </div>
-                    <a class="modal-close waves-effect waves-light btn">Submit</a>
+                    <a class="modal-close waves-effect waves-light btn" id="movie-submit-btn">Submit</a>
                 </form>
             </div>
         </div>
