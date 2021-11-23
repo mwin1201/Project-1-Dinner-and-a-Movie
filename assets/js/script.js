@@ -142,6 +142,54 @@ var addToFavorites = function(obj) {
     }
 };
 
+// load favorite recipes
+var loadFavRecipes = function() {
+    var favRecipes = JSON.parse(localStorage.getItem("Favorite-Recipes"));
+    for (var i = 0; i < favRecipes.length; i++) {
+        $("#fav-recipe-container").append(
+            '<div class="col s12 m3 l3">' +
+            '<div class="card" id="fav-recipe' + i + '">' +
+            '<div class="card-image">' +
+            '<img src=' + favRecipes[i].image + '>' +
+            '<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">clear</i></a>' + 
+            '</div>' +
+            '<div class="card-content">' +
+            '<h4 class="card-title">' + favRecipes[i].title + '</h4>' +
+            '</div>' +
+            '<div class="card-action">' +
+            '<a href' + favRecipes[i].video + 'target="_blank">YouTube Tutorial</a>' +
+            '<span>' + favRecipes[i].views + '</span>' +
+            '</div>' + 
+            '</div>' +
+            '</div>'
+        );
+    }
+};
+
+var loadFavMovies = function() {
+    var favMovies = JSON.parse(localStorage.getItem("Favorite-Movies"));
+    for (var i = 0; i < favMovies.length; i++) {
+        $("#fav-movie-container").append(
+            '<div class="col s12 m3 l3">' +
+            '<div class="card" id="fav-movie' + i + '">' +
+            ' <div class="card-image">' +
+            '<img src=' + favMovies[i].poster + '>' + 
+            '<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">clear</i></a>' + 
+            '</div>' + 
+            '<div class="card-content">' +
+            '<h4 class="card-title" id="movie-title">' + favMovies[i].title + '</h4>' + 
+            '<p id="overview">' + favMovies[i].overview + '</p>' +
+            '</div>' +
+            '<div class="card-action">' +
+            '<p id="release-date">' + favMovies[i].releaseDate + '</p>' +
+            '<p id="vote-average">' + favMovies[i].voteAvg + '</p>' +
+            '</div>' +
+            '</div>' +
+            '</div>'
+        );
+    }
+}
+
 // get dinner user inputs
 $("#dinner-submit-btn").click(function(event) {
     event.preventDefault();
@@ -177,3 +225,6 @@ $(".material-icons").click(function(event) {
         createMovieObj($(this).parents(".card").attr("id"));
     }
 });
+
+loadFavRecipes();
+loadFavMovies();
