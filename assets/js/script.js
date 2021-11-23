@@ -44,6 +44,10 @@ $(document).ready(function() {
     $("input#year").characterCounter();
 });
 
+// initialize the arrays for user favorites
+var favMoviesArr = [];
+var favRecipesArr = [];
+
 var getMovies = function(sort, year) {
     // format tmdb api url
     // var tmdbApiUrl ="https://api.themoviedb.org/3/discover/movie?api_key=b2defd411e4c4ccada84680b336db68b&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&year=" +  year + "&with_genres=" + genre + "&with_watch_monetization_types=free";
@@ -89,6 +93,54 @@ var displayMovies = function(data) {
     }
 };
 
+// create recipe object
+var createRecipeObj = function(card) {
+    //console.log($("#" + card).children());
+    var recipeImg = $("#" + card).children()[0].firstElementChild.currentSrc;
+    var recipeTitle = $("#" + card).children()[1].innerText;
+    var recipeVideo = $("#" + card).children()[2].firstElementChild.href;
+    var recipeViews = $("#" + card).children()[2].lastElementChild.innerText;
+    //console.log(recipeImg + " " + recipeTitle + " " + recipeVideo + " " + recipeViews);
+    var recipeObj = {
+        image: recipeImg,
+        title: recipeTitle,
+        video: recipeVideo,
+        views: recipeViews
+    };
+    addToFavorites(recipeObj);
+};
+
+// create movie object
+var createMovieObj = function(card) {
+    //console.log($("#" + card).children());
+    var posterImg = $("#" + card).children()[0].firstElementChild.currentSrc;
+    var movieTitle = $("#" + card).children()[1].firstElementChild.innerText;
+    var movieOverview = $("#" + card).children()[1].lastElementChild.innerText;
+    var movieReleaseDate = $("#" + card).children()[2].firstElementChild.innerText;
+    var movieVoteAvg = $("#" + card).children()[2].lastElementChild.innerText;
+    //console.log(posterImg + " " + movieTitle + " " + movieOverview + " " + movieReleaseDate + " " + movieVoteAvg);
+    var movieObj = {
+        poster: posterImg,
+        title: movieTitle,
+        overview: movieOverview,
+        releaseDate: movieReleaseDate,
+        voteAvg: movieVoteAvg
+    };
+    addToFavorites(movieObj);
+};
+
+// add to favorite arrays and push to local storage
+var addToFavorites = function(obj) {
+    var size = Object.keys(obj).length;
+    if (size < 5) {
+        favRecipesArr.push(obj);
+        localStorage.setItem("Favorite-Recipes", JSON.stringify(favRecipesArr));
+    }
+    else {
+        favMoviesArr.push(obj);
+        localStorage.setItem("Favorite-Movies", JSON.stringify(favMoviesArr));
+    }
+};
 
 // get dinner user inputs
 $("#dinner-submit-btn").click(function(event) {
@@ -114,4 +166,14 @@ $("#movie-submit-btn").click(function(event) {
     }
     console.log(sort + " and " + year);
     getMovies(sort, year);
+});
+
+$(".material-icons").click(function(event) {
+    var cardId = $(this).parents(".card").attr("id");
+    if (cardId.includes("recipe")) {
+        createRecipeObj($(this).parents(".card").attr("id"));
+    }
+    else{
+        createMovieObj($(this).parents(".card").attr("id"));
+    }
 });
