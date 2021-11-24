@@ -4,9 +4,268 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Dinner and a Movie</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <header>
+        <h1>Dinner and a Movie</h1>
+    </header>
+
+    <!--container for the main content-->
+    <div class="container">
+        <!--row to contain the buttons on the page-->
+        <div class="row">
+            <!--make dinner button-->
+            <div class="col s6 m6 l6">
+                <a class="waves-effect waves-light btn-large btn modal-trigger" href="#dinner-modal">Make Dinner!</a>
+            </div>
+
+            <!--find movie button-->
+            <div class="col s6 m6 l6">
+                <a class="waves-effect waves-light btn-large btn modal-trigger" href="#movie-modal">Find a Movie!</a>
+            </div>
+        </div>
+        <!--Cards to contain API information-->
+        <!--1st row for cards-->
+        <!--dinner card #1-->
+        <div class="row">
+            <div class="col s12 m3 l3">
+                <div class="card" id="recipe1">
+                    <div class="card-image">
+                        <img src="https://i.ytimg.com/vi/YTZGPCCB2FU/mqdefault.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="card-title">8 One-Pot Pastas</h4>                    </div>
+                    <div class="card-action">
+                        <a href="https://www.youtube.com/watch?v=YTZGPCCB2FU" target="_blank">YouTube Tutorial</a>
+                        <span>Views: 550467</span>
+                    </div>
+                </div>
+            </div>
+
+            <!--dinner card #2-->
+            <div class="col s12 m3 l3">
+                <div class="card" id="recipe2">
+                    <div class="card-image">
+                        <img src="https://i.ytimg.com/vi/81bn4p8H3Kg/mqdefault.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="card-title">Macaroni Salad</h4>
+                    </div>
+                    <div class="card-action">
+                        <a href="https://www.youtube.com/watch?v=81bn4p8H3Kg" target="_blank">YouTube Tutorial</a>
+                        <span>Views: 307</span>
+                    </div>
+                </div>
+            </div>
+
+            <!--dinner card #3-->
+            <div class="col s12 m3 l3">
+                <div class="card" id="recipe3">
+                    <div class="card-image">
+                        <img src="https://i.ytimg.com/vi/YTZGPCCB2FU/mqdefault.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="card-title">8 One-Pot Pastas</h4>
+                    </div>
+                    <div class="card-action">
+                        <a href="https://www.youtube.com/watch?v=YTZGPCCB2FU" target="_blank">YouTube Tutorial</a>
+                        <span>Views: 550467</span>
+                    </div>
+                </div>
+            </div>
+
+            <!--dinner card #4-->
+            <div class="col s12 m3 l3">
+                <div class="card" id="recipe4">
+                    <div class="card-image">
+                        <img src="https://i.ytimg.com/vi/81bn4p8H3Kg/mqdefault.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="card-title">Macaroni Salad</h4>
+                    </div>
+                    <div class="card-action">
+                        <a href="https://www.youtube.com/watch?v=81bn4p8H3Kg" target="_blank">YouTube Tutorial</a>
+                        <span>Views: 307</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--2nd row for cards-->
+        <div class="row">
+            <!--movie card #1-->
+            <div class="col s12 m3 l3">
+                <div class="card" id="movie1">
+                    <div class="card-image">
+                        <img src="https://image.tmdb.org/t/p/w200/1BIoJGKbXjdFDAqUEiA2VHqkK1Z.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="card-title" id="movie-title">Shang-Chi and the Legend of the Ten Rings</h4>
+                        <p id="overview">Shang-Chi must confront the past he thought he left behind when he is drawn into the web of the mysterious Ten Rings organization.</p>
+                    </div>
+                    <div class="card-action">
+                        <p id="release-date">Release Date: 2021-09-01</p>
+                        <p id="vote-average">Vote Average: 7.9</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--movie card #2-->
+            <div class="col s12 m3 l3">
+                <div class="card" id="movie2">
+                    <div class="card-image">
+                        <img src="https://image.tmdb.org/t/p/w200/iUgygt3fscRoKWCV1d0C7FbM9TP.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="card-title" id="movie-title">No Time to Die</h4>
+                        <p id="overview">Bond has left active service and is enjoying a tranquil life in Jamaica. His peace is short-lived when his old friend Felix Leiter from the CIA turns up asking for help. The mission to rescue a kidnapped scientist turns out to be far more treacherous than expected, leading Bond onto the trail of a mysterious villain armed with dangerous new technology.</p>
+                    </div>
+                    <div class="card-action">
+                        <p id="release-date">Release Date: 2021-09-29</p>
+                        <p id="vote-average">Vote Average: 7.6</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--movie card #3-->
+            <div class="col s12 m3 l3">
+                <div class="card" id="movie3">
+                    <div class="card-image">
+                        <img src="https://image.tmdb.org/t/p/w200/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="card-title" id="movie-title">Venom: Let There Be Carnage</h4>
+                        <p id="overview">After finding a host body in investigative reporter Eddie Brock, the alien symbiote must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady.</p>
+                    </div>
+                    <div class="card-action">
+                        <p id="release-date">Release Date: 2021-09-30</p>
+                        <p id="vote-average">Vote Average: 6.8</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!--movie card #4-->
+            <div class="col s12 m3 l3">
+                <div class="card" id="movie4">
+                    <div class="card-image">
+                        <img src="https://image.tmdb.org/t/p/w200/jKuDyqx7jrjiR9cDzB5pxzhJAdv.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="card-title" id="movie-title">Finch</h4>
+                        <p id="overview">On a post-apocalyptic Earth, a robot, built to protect the life of his dying creator's beloved dog, learns about life, love, friendship, and what it means to be human.</p>
+                    </div>
+                    <div class="card-action">
+                        <p id="release-date">Release Date: 2021-11-04</p>
+                        <p id="vote-average">Vote Average: 8.2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Dinner Modal-->
+        <div id="dinner-modal" class="modal">
+            <div class="modal-content">
+                <form>
+                    <div class="input-field col s6">
+                        <select name="meal-type" id="meal-type">
+                            <option value="" disabled selected>Select a meal type</option>
+                            <option value="main course">Main Course</option>
+                            <option value="side dish">Side Dish</option>
+                            <option value="appetizer">Appetizer</option>
+                            <option value="salad">Salad</option>
+                            <option value="snack">Snack</option>
+                        </select>
+                        <label for="meal-type">Select a meal type:</label>
+                    </div>
+                    <br><br>
+                    <div class="input-field col s6">
+                        <select name="cuisine" id="cuisine">
+                            <option value="" disabled selected>Select a cuisine</option>
+                            <option value="African">African</option>
+                            <option value="American">American</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="French">French</option>
+                            <option value="German">German</option>
+                            <option value="Italian">Italian</option>
+                            <option value="Thai">Thai</option>
+                        </select>
+                        <label for="cuisine">Select a cuisine:</label>
+                    </div>
+                    <br><br>
+                    <div class="input-field col s6">
+                        <select name="diet" id="diet">
+                            <option value="" disabled selected>Select a diet</option>
+                            <option value="gluten-free">Gluten-free</option>
+                            <option value="Vegetarian">Vegetarian</option>
+                            <option value="Vegan">Vegan</option>
+                        </select>
+                        <label for="diet">Select a diet:</label>
+                    </div>
+                    <br><br>
+                    <a class="modal-close waves-effect waves-light btn" id="dinner-submit-btn">Submit</a>
+                </form>
+            </div>
+        </div>
+
+        <!--movie modal-->
+        <div id="movie-modal" class="modal">
+            <div class="modal-content">
+                <form>
+                    <div class="input-field col s6">
+                        <select name="sort" id="sort">
+                            <option value="" disabled selected>Select a value to sort by</option>
+                            <option value="popularity.desc">Most Popular</option>
+                            <option value="popularity.asc">Least Popular</option>
+                            <option value="release_date.desc">Newest Release</option>
+                            <option value="release_date.asc">Oldest Release</option>
+                        </select>
+                        <label for="sort">Select a value to sort by:</label>
+                    </div>
+                    <br><br>
+                    <div class="input-field col s6">
+                        <input placeholder="2020" id="year" type="text" class="validate" data-length="4">
+                        <label for="year">Year</label>
+                    </div>
+                    <a class="modal-close waves-effect waves-light btn" id="movie-submit-btn">Submit</a>
+                </form>
+            </div>
+        </div>
+
+        <!--Favorite recipes section-->
+        <div class="row">
+            <h2>Favorite Recipes</h2>
+            <div id="fav-recipe-container"></div>
+        </div>
+        <!--Favorite movies section-->
+        <div class="row">
+            <h2>Favorite Movies</h2>
+            <div id="fav-movie-container"></div>
+        </div>
+
+    </div>
+
+
+    <footer>
+        &copy All rights reserved. Max, Chris, and Mahdi 2021.
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
