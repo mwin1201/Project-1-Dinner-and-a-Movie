@@ -135,16 +135,28 @@ var addToFavorites = function(obj) {
     if (size < 5) {
         favRecipesArr.push(obj);
         localStorage.setItem("Favorite-Recipes", JSON.stringify(favRecipesArr));
+        loadFavRecipes(false);
     }
     else {
         favMoviesArr.push(obj);
         localStorage.setItem("Favorite-Movies", JSON.stringify(favMoviesArr));
+        loadFavMovies(false);
     }
 };
 
 // load favorite recipes
-var loadFavRecipes = function() {
-    favRecipesArr = JSON.parse(localStorage.getItem("Favorite-Recipes"));
+var loadFavRecipes = function(remove) {
+    if (!remove) {
+        favRecipesArr = JSON.parse(localStorage.getItem("Favorite-Recipes"));
+    }
+    else {
+        localStorage.setItem("Favorite-Recipes", JSON.stringify(favRecipesArr));
+    }
+    if (!favRecipesArr) {
+        favRecipesArr = [];
+        return;
+    }
+    $("#fav-recipe-container").empty();
     for (var i = 0; i < favRecipesArr.length; i++) {
         $("#fav-recipe-container").append(
             '<div class="col s12 m3 l3">' +
@@ -157,7 +169,7 @@ var loadFavRecipes = function() {
             '<h4 class="card-title">' + favRecipesArr[i].title + '</h4>' +
             '</div>' +
             '<div class="card-action">' +
-            '<a href' + favRecipesArr[i].video + 'target="_blank">YouTube Tutorial</a>' +
+            '<a href=' + favRecipesArr[i].video + ' target="_blank">YouTube Tutorial</a>' +
             '<span>' + favRecipesArr[i].views + '</span>' +
             '</div>' + 
             '</div>' +
@@ -167,8 +179,18 @@ var loadFavRecipes = function() {
 };
 
 // load favorite movies
-var loadFavMovies = function() {
-    favMoviesArr = JSON.parse(localStorage.getItem("Favorite-Movies"));
+var loadFavMovies = function(remove) {
+    if (!remove) {
+        favMoviesArr = JSON.parse(localStorage.getItem("Favorite-Movies"));
+    }
+    else {
+        localStorage.setItem("Favorite-Movies", JSON.stringify(favMoviesArr));
+    }
+    if (!favMoviesArr) {
+        favMoviesArr = [];
+        return;
+    }
+    $("#fav-movie-container").empty();
     for (var i = 0; i < favMoviesArr.length; i++) {
         $("#fav-movie-container").append(
             '<div class="col s12 m3 l3">' +
@@ -193,10 +215,33 @@ var loadFavMovies = function() {
 
 // remove recipe from favorite list
 var removeRecipe = function(card) {
-    
+    index = 0;
+    var title = $("#" + card).children()[1].innerText;
+    for (var i = 0; i < favRecipesArr.length; i++) {
+        if (favRecipesArr[i].title === title) {
+            index = i;
+            break;
+        }
+    }
+    favRecipesArr.splice(index,1);
+    loadFavRecipes(true);
 };
 
 // remove movie from favorite list
+var removeMovie = function(card) {
+    index = 0;
+    var title = $("#" + card).children()[1].innerText;
+    for (var i = 0; i < favMoviesArr.length; i++) {
+        if (favMoviesArr[i].title === title) {
+            index = i;
+            break;
+        }
+    }
+    favMoviesArr.splice(index,1);
+    loadFavMovies(true);
+
+}
+
 
 // get dinner user inputs
 $("#dinner-submit-btn").click(function(event) {
@@ -224,15 +269,10 @@ $("#movie-submit-btn").click(function(event) {
     getMovies(sort, year);
 });
 
-$(".material-icons").click(function(event) {
+
+$(".material-icons").on("click", function() {
     var cardId = $(this).parents(".card").attr("id");
-    if (cardId.includes("fav-recipe")) {
-        removeRecipe(cardId);
-    }
-    else if (cardId.includes("fav-movie")) {
-        removeMovie(cardId);
-    }
-    else if (cardId.includes("recipe")) {
+    if (cardId.includes("recipe")) {
         createRecipeObj(cardId);
     }
     else{
@@ -240,5 +280,18 @@ $(".material-icons").click(function(event) {
     }
 });
 
-loadFavRecipes();
-loadFavMovies();
+// click event for dynamically created favorite recipe cards
+$("#fav-recipe-container").on("click", function() {
+    var cardId = $(this).find(".card").attr("id");
+    removeRecipe(cardId);
+});
+
+// click event for dynamically created favorite movie cards
+$("#fav-movie-container").on("click", function() {
+    var cardId = $(this).find(".card").attr("id");
+    removeMovie(cardId);
+});
+
+
+loadFavRecipes(false);
+loadFavMovies(false);
