@@ -2,11 +2,40 @@ var recipeContainerEl =  document.querySelector("#card-recipes");
 var movieContainerEl =  document.querySelector("#card-movies");
 
 var createRecipeCards =function (params) {
-    $("#card-recipes").empty();
+    console.log(params)
+    const containerColDiv = $("<div>").attr("class", "col s12 m3 l3")
+    const cardContainer = $("<div>").attr("class", "card")
+
+    //image portion of card
+    const cardImageContainer = $("<div>").attr("class", "card-image")
+    const cardImage = $("<img>").attr("src", params.thumbnail)
+    const cardLink = $("<a>").attr("class", "btn-floating halfway-fab waves-effect waves-light red")
+    const linkIcon = $("<i>").attr("class", "material-icons").text("add")
+
+    cardLink.append(linkIcon)
+    cardImageContainer.append(cardImage)
+    cardImageContainer.append(cardLink)
+    cardContainer.append(cardImageContainer)
+
+    //content portion 
+    const cardContentContainer = $("<div>").attr("class", "card-content")
+    const cardContent = $("<h4>").attr("class", "card-title").text(params.shortTitle)
     
-    
-    // var recipeEl = document.createElement("div");
-    // recipeEl.className = "card";
+    cardContentContainer.append(cardContent)
+    cardContainer.append(cardContentContainer)
+
+    //action portion
+    const cardActionContainer = $("<div>").attr("class", "card-action")
+    const cardAction = $("<a>").attr("href", "https://www.youtube.com/watch?v=" + params.youTubeId).attr("target", "_blank").text("There will be Link")
+    const cardSpan = $("<span>").text(params.views)
+
+    cardActionContainer.append(cardAction)
+    cardActionContainer.append(cardSpan)
+    cardContainer.append(cardActionContainer)
+
+    //adding everything to a single card column
+    containerColDiv.append(cardContainer)
+    return containerColDiv
 }
 
 var createMovieCards = function (params) {
@@ -88,6 +117,7 @@ var getRecipes = function(mealType, cuisine, diet) {
     fetch(spoonApiUrl).then(function(response) {
         if (response.ok) {
             response.json().then(function(data) {
+                // console.log(data)
                 displayRecipes(data);
             });
         }
@@ -96,8 +126,13 @@ var getRecipes = function(mealType, cuisine, diet) {
 
 // display recipe cards on site
 var displayRecipes = function(data) {
+    console.log(data)
+    $("#card-recipes").empty();
     for (var i = 0; i < 4; i++) {
         console.log("[Recipe " + i + "]: Thumbnail: " + data.videos[i].thumbnail + " - shortTitle: " + data.videos[i].shortTitle + " - YoutTube: " + data.videos[i].youTubeId + " - Views: " + data.videos[i].views);
+        //create cards
+        var newCard = createRecipeCards(data.videos[i])
+        $("#card-recipes").append(newCard)
     }
     console.log("Length of results: " + data.videos.length);
 };
