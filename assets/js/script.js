@@ -1,3 +1,19 @@
+var recipeContainerEl =  document.querySelector("#card-recipes");
+var movieContainerEl =  document.querySelector("#card-movies");
+
+var createRecipeCards =function (params) {
+    $("#card-recipes").empty();
+    
+    
+    // var recipeEl = document.createElement("div");
+    // recipeEl.className = "card";
+}
+
+var createMovieCards = function (params) {
+    var movieEl = document.createElement("div");
+    movieEl.className = "card";
+}
+
 // initialize the dinner modal
 $(document).ready(function() {
     $("#dinner-modal").modal({
