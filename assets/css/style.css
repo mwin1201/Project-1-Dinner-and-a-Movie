@@ -2,4 +2,11 @@ header, h2 {
     text-align: center;
     background: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
     margin-top: 0;
+    font-family: 'Architects Daughter', cursive;
+}
+
+body {
+    background-color: #a0a0a4;
+    /*font-family: 'Open Sans', sans-serif;
+    font-family: 'Staatliches', cursive;*/
 }
