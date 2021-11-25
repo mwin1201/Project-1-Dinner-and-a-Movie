@@ -101,7 +101,7 @@ var displayRecipes = function(data, recipeSearches) {
             '</div>' +
             '<div class="card-action">' +
             '<a href="https://www.youtube.com/watch?v=' + data.videos[i].youTubeId + '" target="_blank">YouTube Tutorial</a>' +
-            '<span>Views:' + data.videos[i].views + '</span>' +
+            '<span>Views: ' + data.videos[i].views + '</span>' +
             '</div>' +
             '</div>' +
             '</div>'
