@@ -45,7 +45,7 @@ var createMovieCards = function (params) {
 
     //image portion of card
     const cardImageContainer = $("<div>").attr("class", "card-image")
-    const cardImage = $("<img>").attr("src", params.poster_path)
+    const cardImage = $("<img>").attr("src", "https://image.tmdb.org/t/p/w200" + params.poster_path)
     const cardLink = $("<a>").attr("class", "btn-floating halfway-fab waves-effect waves-light red")
     const linkIcon = $("<i>").attr("class", "material-icons").text("add")
 
