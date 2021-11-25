@@ -180,7 +180,7 @@ var displayMovies = function(data) {
     for (var i = 0; i < 4; i++) {
         console.log("[Movie " + i + "]: Poster path: " + data.results[i].poster_path + " - Title: " + data.results[i].title + " - Overview: " + data.results[i].overview + " - Release data: " + data.results[i].release_date + " - vote average: " + data.results[i].vote_average);
          //create cards
-         var newCard = createMovieCards(data)
+         var newCard = createMovieCards(data.results[i])
          $("#card-movies").append(newCard)
     }
 };
