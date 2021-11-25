@@ -26,7 +26,7 @@ var createRecipeCards =function (params) {
 
     //action portion
     const cardActionContainer = $("<div>").attr("class", "card-action")
-    const cardAction = $("<a>").attr("href", "https://www.youtube.com/watch?v=" + params.youTubeId).attr("target", "_blank").text("There will be Link")
+    const cardAction = $("<a>").attr("href", "https://www.youtube.com/watch?v=" + params.youTubeId).attr("target", "_blank").text("Recipe Tutorial Video")
     const cardSpan = $("<span>").text(params.views)
 
     cardActionContainer.append(cardAction)
@@ -39,8 +39,44 @@ var createRecipeCards =function (params) {
 }
 
 var createMovieCards = function (params) {
-    var movieEl = document.createElement("div");
-    movieEl.className = "card";
+    console.log(params)
+    const containerColDiv = $("<div>").attr("class", "col s12 m3 l3")
+    const cardContainer = $("<div>").attr("class", "card")
+
+    //image portion of card
+    const cardImageContainer = $("<div>").attr("class", "card-image")
+    const cardImage = $("<img>").attr("src", params.poster_path)
+    const cardLink = $("<a>").attr("class", "btn-floating halfway-fab waves-effect waves-light red")
+    const linkIcon = $("<i>").attr("class", "material-icons").text("add")
+
+    cardLink.append(linkIcon)
+    cardImageContainer.append(cardImage)
+    cardImageContainer.append(cardLink)
+    cardContainer.append(cardImageContainer)
+
+    //content portion 
+    const cardContentContainer = $("<div>").attr("class", "card-content")
+    const cardContent = $("<h4>").attr("class", "card-title").text(params.title)
+    // const cardContent = $("<h4>").attr("class", "card-title", "movie-title").text(params)
+    const cardOverview = $("<p>").attr("id", "overview").text(params.overview)
+    
+    cardContentContainer.append(cardContent)
+    cardContentContainer.append(cardOverview)
+    cardContainer.append(cardContentContainer)
+    
+    //action portion
+    const cardActionContainer = $("<div>").attr("class", "card-action")
+    const cardAction = $("<h4>").attr("id","release-date", params.release_date)
+    const cardActionVa = $("<h4>").attr("id","vote-average", params.vote_average)
+
+    cardActionContainer.append(cardAction)
+    cardActionContainer.append(cardActionVa)
+    cardContainer.append(cardActionContainer)
+
+    //adding everything to a single card column
+    containerColDiv.append(cardContainer)
+    return containerColDiv
+
 }
 
 // initialize the dinner modal
@@ -139,8 +175,13 @@ var displayRecipes = function(data) {
 
 // display movie cards on site
 var displayMovies = function(data) {
+    console.log(data)
+    $("#card-movies").empty();
     for (var i = 0; i < 4; i++) {
         console.log("[Movie " + i + "]: Poster path: " + data.results[i].poster_path + " - Title: " + data.results[i].title + " - Overview: " + data.results[i].overview + " - Release data: " + data.results[i].release_date + " - vote average: " + data.results[i].vote_average);
+         //create cards
+         var newCard = createMovieCards(data)
+         $("#card-movies").append(newCard)
     }
 };
 
