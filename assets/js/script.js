@@ -290,6 +290,21 @@ var removeMovie = function(card) {
 
 }
 
+// show add favorite confirmation message
+var addConfirmation = function() {
+    $("#fav-add-confirmation").addClass("show");
+    setTimeout(function() {
+        $("#fav-add-confirmation").removeClass("show");
+    }, 2000);
+};
+
+// show remove favorite confirmation message
+var removeConfirmation = function() {
+    $("#fav-remove-confirmation").addClass("show");
+    setTimeout(function() {
+        $("#fav-remove-confirmation").removeClass("show");
+    }, 2000);
+};
 
 // get dinner user inputs
 $("#dinner-submit-btn").click(function(event) {
@@ -333,28 +348,28 @@ $("#movie-submit-btn").click(function(event) {
 // click event to add dynamically created recipe cards to favorites
 $("#recipe-container").on("click", function(event) {
     var cardId = event.target.parentElement.parentElement.parentElement.id;
-    console.log(cardId);
+    addConfirmation();
     createRecipeObj(cardId);
 });
 
 // click event to add dynamically created movie cards to favorites
 $("#movie-container").on("click", function(event) {
     var cardId = event.target.parentElement.parentElement.parentElement.id;
-    console.log(cardId);
+    addConfirmation();
     createMovieObj(cardId);
 });
 
 // click event to remove dynamically created favorite recipe cards
 $("#fav-recipe-container").on("click", function(event) {
     var cardId = event.target.parentElement.parentElement.parentElement.id;
-    console.log(cardId);
+    removeConfirmation();
     removeRecipe(cardId);
 });
 
 // click event to remove dynamically created favorite movie cards
 $("#fav-movie-container").on("click", function(event) {
     var cardId = event.target.parentElement.parentElement.parentElement.id;
-    console.log(cardId);
+    removeConfirmation();
     removeMovie(cardId);
 });
 
