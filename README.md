@@ -1,5 +1,5 @@
 # Dinner And A Movie
-Dinner and a Movie is for the everyday person wanting to be independent, make their own meals and relax with some movies
+Dinner and a Movie is for the everyday person wanting to be independent, make their own meals and relax with some movies. When you get to the application you can search for meals to make by clicking on the 'Make Dinner' button. After entering some details about the meal you will see suggestions popup. The suggestions contains YouTube links to the recipes so you can cook and watch along with the tutorial. There is also the number of views the video has gotten to indicate popularity. Next you can search for movies with the 'Find Movies' button. Select a value to sort by and a year and see the suggestions right away. You can add any recipe or movie to your favorite list by clicking the red plus sign. You can also remove items from your favorites by clicking the red 'X' symbol.
 
 ## Application link
 [Dinner And A Movie](https://mwin1201.github.io/Project-1-Dinner-and-a-Movie/)
